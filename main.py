@@ -1,8 +1,10 @@
 from fastapi import FastAPI, HTTPException
 from starlette.responses import RedirectResponse
 from urls import URLS as url_map
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI()
+Instrumentator().instrument(app).expose(app)
 
 
 @app.get("/")
